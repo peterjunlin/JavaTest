@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -22,16 +23,16 @@ import javafx.scene.control.Alert;
 public class FXMLDocumentController implements Initializable {
   
   @FXML
-  private Label label;
+  private TextArea textOutput;
   
   private InstanceLock insLock = null;
-  
+    
   @FXML
-  private void handleButtonAction(ActionEvent event) throws IOException {
+  private void testInstanceLock(ActionEvent event) throws IOException {
     if (insLock.isSingleInstance()) {
-      label.setText("is single instance!");
+      textOutput.setText("This application is a single instance!");
     } else {
-      label.setText("is not single instance!");
+      textOutput.setText("This application is not a single instance!");
     }
   }
   

@@ -6,10 +6,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="307.0" prefWidth="394.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafxapplication1.FXMLDocumentController">
-  <children>
-    <Button fx:id="button" layoutX="130.0" layoutY="64.0" onAction="#handleButtonAction" text="Click Me!" />
-    <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <HBox layoutY="8.0" opacity="0.56" prefHeight="301.0" prefWidth="60.0" style="-fx-background-color: blue;" />
-  </children>
-</AnchorPane>
+<BorderPane prefHeight="565.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="JLJavaTest.FXMLDocumentController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+            <Menu mnemonicParsing="false" text="JLJavaTest">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#testInstanceLock" text="InstanceLock" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="303.0" prefWidth="492.0">
+               <children>
+                  <TextArea fx:id="textOutput" editable="false" layoutX="160.0" layoutY="25.0" prefHeight="266.0" prefWidth="565.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
