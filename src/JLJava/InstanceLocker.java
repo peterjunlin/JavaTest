@@ -14,7 +14,7 @@ import java.nio.channels.FileLock;
  *
  * @author jl
  */
-public class InstanceLock {
+public class InstanceLocker {
   private String lockFilePath = null;
   private RandomAccessFile randomFile = null;
   private FileChannel channel = null;
@@ -22,7 +22,7 @@ public class InstanceLock {
   
   public boolean lock() throws IOException {
     String workingDir = System.getProperty("user.dir");
-    lockFilePath = workingDir + "\\lock.txt";
+    lockFilePath = workingDir + "/lock.txt";
     
     randomFile=new RandomAccessFile(lockFilePath,"rw");
     channel=randomFile.getChannel();
