@@ -10,14 +10,17 @@
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-            <Menu mnemonicParsing="false" text="JLJavaTest">
+            <Menu mnemonicParsing="false" text="JLJava">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#testInstanceLock" text="InstanceLock" />
+                <MenuItem mnemonicParsing="false" onAction="#testInstanceLocker" text="InstanceLocker" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="java.lang">
               <items>
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangBoolean" text="java.lang.Boolean" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumber" text="java.lang.Number" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangSystem" text="java.lang.System" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangReflect" text="java.lang.Reflect" />
               </items>
             </Menu>
         </menus>
