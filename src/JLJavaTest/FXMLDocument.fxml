@@ -18,7 +18,10 @@
             <Menu mnemonicParsing="false" text="java.lang">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangBoolean" text="java.lang.Boolean" />
-                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumber" text="java.lang.Number" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberLiteral" text="java.lang.Number literal" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberRange" text="java.lang.Number range" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberUnsigned" text="java.lang.Number unsigned" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberPrecision" text="java.lang.Number precision" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangSystem" text="java.lang.System" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangReflect" text="java.lang.Reflect" />
               </items>

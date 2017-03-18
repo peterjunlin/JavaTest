@@ -70,7 +70,7 @@ public class FXMLDocumentController implements Initializable {
   }
   
   @FXML
-  private void testJavaLangNumber(ActionEvent event) {
+  private void testJavaLangNumberLiteral(ActionEvent event) {
     int i = 010;
     resultTable.addRow("java.lang.Number", "int i = 010;", Integer.toString(i));
     i = 0xa0;
@@ -81,21 +81,46 @@ public class FXMLDocumentController implements Initializable {
     resultTable.addRow("java.lang.Number", "long lg = 12345L;", Long.toString(lg));
     lg = 1122_2356_6543L;
     resultTable.addRow("java.lang.Number", "long lg = 1122_2356_6543L;", Long.toString(lg));
-    i = -1;
-    lg = Integer.toUnsignedLong(i);
-    resultTable.addRow("java.lang.Number", "lg = Integer.toUnsignedLong(-1);", Long.toString(lg));
-    resultTable.addRow("java.lang.Number", "Integer.BYTES", Integer.toString(Integer.BYTES));
-    resultTable.addRow("java.lang.Number", "Integer.SIZE", Integer.toString(Integer.SIZE));
+  }
+
+  @FXML
+  private void testJavaLangNumberUnsigned(ActionEvent event) {
+    int i = -1;
+    long lg = Integer.toUnsignedLong(i);
+    resultTable.addRow("java.lang.Number Unsigned", "lg = Integer.toUnsignedLong(-1);", Long.toString(lg));
+  }
+  
+  @FXML
+  private void testJavaLangNumberRange(ActionEvent event) {
     resultTable.addRow("java.lang.Number", "Integer.MAX_VALUE", Integer.toString(Integer.MAX_VALUE));
     resultTable.addRow("java.lang.Number", "Integer.MIN_VALUE", Integer.toString(Integer.MIN_VALUE));
+    resultTable.addRow("java.lang.Number", "Integer.SIZE", Integer.toString(Integer.SIZE));
+    resultTable.addRow("java.lang.Number", "Integer.BYTES", Integer.toString(Integer.BYTES));
+    resultTable.addRow("java.lang.Number", "Long.MAX_VALUE", Long.toString(Long.MAX_VALUE));
+    resultTable.addRow("java.lang.Number", "Long.MIN_VALUE", Long.toString(Long.MIN_VALUE));
+    resultTable.addRow("java.lang.Number", "Long.BYTES", Integer.toString(Long.BYTES));
+    resultTable.addRow("java.lang.Number", "Float.MAX_VALUE", Float.toString(Float.MAX_VALUE));
+    resultTable.addRow("java.lang.Number", "Float.MIN_VALUE", Float.toString(Float.MIN_VALUE));
+    resultTable.addRow("java.lang.Number", "Float.BYTES", Integer.toString(Float.BYTES));
+    resultTable.addRow("java.lang.Number", "Double.MAX_VALUE", Double.toString(Double.MAX_VALUE));
+    resultTable.addRow("java.lang.Number", "Double.MIN_VALUE", Double.toString(Double.MIN_VALUE));
+    resultTable.addRow("java.lang.Number", "Double.BYTES", Integer.toString(Double.BYTES));
+  }
+  
+  @FXML
+  private void testJavaLangNumberPrecision(ActionEvent event) {
     double d1 = 10/3;
-    resultTable.addRow("java.lang.Number", "double d1 = 10/3;", Double.toString(d1));
+    resultTable.addRow("java.lang.Number - integer division", "double d1 = 10/3;", Double.toString(d1));
     d1 = 10/3.0;
     resultTable.addRow("java.lang.Number", "double d1 = 10/3.0;", Double.toString(d1));
     d1 = 10.0/3;
     resultTable.addRow("java.lang.Number", "double d1 = 10.0/3;", Double.toString(d1));
+    d1 = 1000000.0f + 1.2f - 1000000.0f;
+    resultTable.addRow("java.lang.Number - float to double lose precisions", "d1 = 1000000.0f + 1.2f - 1000000.0f;", Double.toString(d1));
+    d1 = 1_000_000_000_000_000.0d + 1.2d - 1_000_000_000_000_000.0d;
+    resultTable.addRow("java.lang.Number - double calculation lose precisions", "d1 = 1_000_000_000_000_000.0d + 1.2f - 1_000_000_000_000_000.0d;", Double.toString(d1));
   }
-  
+        
   @FXML
   private void testJavaLangSystem(ActionEvent event) {
     // System.getenv()
