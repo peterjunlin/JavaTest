@@ -37,12 +37,12 @@ public class TestingResultTable {
     TableColumn<TestingResult,String> testItemCol = new TableColumn("Test Item");
     testItemCol.setCellValueFactory(new PropertyValueFactory("testItem"));
     testItemCol.minWidthProperty().set(100);
-    testItemCol.maxWidthProperty().set(200);
+    testItemCol.maxWidthProperty().set(300);
     
     TableColumn<TestingResult,String> testKeyCol = new TableColumn("Test Key");
     testKeyCol.setCellValueFactory(new PropertyValueFactory("testKey"));
     testKeyCol.minWidthProperty().set(100);
-    testKeyCol.maxWidthProperty().set(200);
+    testKeyCol.maxWidthProperty().set(300);
     
     TableColumn<TestingResult,String> testValueCol = new TableColumn("Test Value");
     testValueCol.setCellValueFactory(new PropertyValueFactory("testValue"));

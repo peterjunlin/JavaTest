@@ -22,8 +22,16 @@
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberRange" text="java.lang.Number range" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberUnsigned" text="java.lang.Number unsigned" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberPrecision" text="java.lang.Number precision" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangNumberConversion" text="java.lang.Number conversion" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangCharacter" text="java.lang.Character" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaUtilObjects" text="java.util.Objects" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangSystem" text="java.lang.System" />
                 <MenuItem mnemonicParsing="false" onAction="#testJavaLangReflect" text="java.lang.Reflect" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="java statements">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#testEnum" text="Enum" />
               </items>
             </Menu>
         </menus>
