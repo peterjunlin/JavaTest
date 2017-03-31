@@ -31,7 +31,16 @@
             </Menu>
             <Menu mnemonicParsing="false" text="java statements">
               <items>
+                <MenuItem mnemonicParsing="false" onAction="#testConstant" text="Constant" />
                 <MenuItem mnemonicParsing="false" onAction="#testEnum" text="Enum" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaLangVariable" text="Variable" />
+                <MenuItem mnemonicParsing="false" onAction="#testJavaTryCatch" text="try/catch/finally" />
+                <MenuItem mnemonicParsing="false" onAction="#testLambdaExpression" text="lambda expression" />
+                <MenuItem mnemonicParsing="false" onAction="#testIterator" text="Iterator" />
+                <MenuItem mnemonicParsing="false" onAction="#testProperty" text="Property" />
+                <MenuItem mnemonicParsing="false" onAction="#testPassParameters" text="Pass parameters" />
+                <MenuItem mnemonicParsing="false" onAction="#testInterface" text="Interface" />
+                <MenuItem mnemonicParsing="false" onAction="#testGeneric" text="Generic" />
               </items>
             </Menu>
         </menus>

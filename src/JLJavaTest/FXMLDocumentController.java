@@ -11,7 +11,9 @@ import JLJava.TestingResult;
 import JLJava.TestingResultTable;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
@@ -195,7 +197,12 @@ public class FXMLDocumentController implements Initializable {
     
     resultTable.addRow(testItem, "Weekdays.Monday.toString()", Weekdays.Monday.toString());
     resultTable.addRow(testItem, "Weekdays.Monday.ia()", Integer.toString(Weekdays.Monday.ia()));
-    resultTable.addRow(testItem, "Weekdays.Monday.ia()", Integer.toString(Weekdays.Monday.ia()));
+    
+    for (Weekdays w: Weekdays.values()) {
+      sb.append(w.toString());
+    }
+    resultTable.addRow(testItem, "Weekdays values", sb.toString());
+    
   }
   enum Weekdays {
     Monday(1,2,3),
@@ -220,4 +227,215 @@ public class FXMLDocumentController implements Initializable {
     }
   }
   
+  @FXML
+  private void testJavaLangVariable(ActionEvent event) {
+    String testItem = "Variable";
+    
+    Integer i = null;
+    resultTable.addRow(testItem, "Objects.isNull(i)", "i is " + (Objects.isNull(i) ? "null" : "not null"));
+    
+    {
+      int k = 2;
+      resultTable.addRow(testItem, "Declare block variable: {int k = 2;}", Integer.toString(k));
+    }
+    int k = 3;
+    resultTable.addRow(testItem, "Declare function variable with same name as block variable", Integer.toString(k));
+    
+    for (i=0; i<10; i++) {
+      resultTable.addRow(testItem, "Access parent variable", Integer.toString(k));
+    }
+    
+    Integer k1 = 1;
+    Integer k2 = k1;
+    resultTable.addRow(testItem, "Object assignment by reference", k1==k2 ? "k1 == k2" : "k1 != k2");
+  }  
+  
+  @FXML
+  private void testJavaTryCatch(ActionEvent event) {
+    String testItem = "try/catch/finally";
+    String result = testTryCatchReturn();
+    resultTable.addRow(testItem, "Returned value", result);
+  }
+  private String testTryCatchReturn() {
+    String testItem = "try/catch/finally";
+    try {
+      throw new IOException("thrown exception");
+    } catch (IOException e) {
+      resultTable.addRow(testItem, "exception message", e.getMessage());
+      return "return from (catch)";
+    } finally {
+      resultTable.addRow(testItem, "finally", "pass finally");
+//      return "return from (finally)";
+    }
+  }
+  
+  @FXML
+  private void testConstant(ActionEvent event) {
+    String testItem = "constant";
+    final double ABC = 12.3456;
+    resultTable.addRow(testItem, "final double ABC = 12.3456;", Double.toString(ABC));
+  }
+
+  @FXML
+  private void testLambdaExpression(ActionEvent event) {
+    String testItem = "Lambda expression";
+    FunctionalInterface f = g -> {return (g+1);};
+
+    int k = f.singleFunction(10);
+    resultTable.addRow(testItem, "call lambda", Integer.toString(k));
+  }
+  private interface FunctionalInterface {
+    int singleFunction(int f);
+  }
+  
+  @FXML
+  private void testIterator(ActionEvent event) {
+    String testItem = "Iterator";
+    ArrayList arr1 = new ArrayList();
+    arr1.add(1);
+    arr1.add(2);
+    arr1.add(3);
+    arr1.add(4);
+    arr1.add(5);
+    arr1.add(6);
+    
+    StringBuilder sb = new StringBuilder();
+    for (Object i: arr1) {
+      sb.append(Integer.toString((Integer)i));
+      sb.append(" ");
+    }
+    resultTable.addRow(testItem, "for (Object i: arr1)", sb.toString());
+    
+    Iterator ir = arr1.iterator();
+    sb.setLength(0);
+    while (ir.hasNext()) {
+      Integer i = (Integer)ir.next();
+      sb.append(i.toString());
+      sb.append(" ");
+    }
+    resultTable.addRow(testItem, "while (ir.hasNext())", sb.toString());
+  }
+  
+  @FXML
+  private void testProperty(ActionEvent event) {
+    String testItem = "Property";
+    Bike bike1 = new Bike();
+    bike1.setBrand("TreeLin");
+    resultTable.addRow(testItem, "set and get property", bike1.getBrand());
+  }
+  private class Bike {
+    private String brand = "";
+    public void setBrand(String s1) {
+      brand = s1;
+    }
+    public String getBrand() {
+      return brand;
+    }
+  }
+  
+  @FXML
+  private void testPassParameters(ActionEvent event) {
+    String testItem = "Pass Parameters";
+    int i1 = 0;
+    testPrimitiveParam(i1);
+    resultTable.addRow(testItem, "pass primitive type (immutable)", Integer.toString(i1));
+
+    Integer i2 = 0;
+    testPrimitiveClass(i2);
+    resultTable.addRow(testItem, "pass primitive class (immutable)", i2.toString());
+    
+    TestP i3 = new TestP();
+    testObjectParam(i3);
+    resultTable.addRow(testItem, "pass mutable object", Integer.toString(i3.i));
+    
+    Class1 c1 = new Class1();
+    int i4 = testFunctionParam(c1);
+    resultTable.addRow(testItem, "pass interface object", Integer.toString(i4));
+    
+    String s1 = testMultipleParams("hello", "abc", "def");
+    resultTable.addRow(testItem, "pass variable number of parameters", s1);
+  }
+  private void testPrimitiveParam(int i) {
+    i = i + 2;
+  }
+  private void testPrimitiveClass(Integer i) {
+    i = 3;
+  }
+  private void testObjectParam(TestP i) {
+    i.i = 3;
+  }
+  private class TestP {
+    public int i = 0;
+  }
+  private int testFunctionParam(Interface1 i) {
+    return (i.getValue());
+  }
+  private interface Interface1 {
+    public int getValue();
+  }
+  private class Class1 implements Interface1 {
+    @Override
+    public int getValue() {
+      return 3;
+    }
+  }
+  private String testMultipleParams(String... args) {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Number of arguments:");
+    sb.append(args.length);
+    int i = 1;
+    for (String arg1: args) {
+      sb.append(" (");
+      sb.append(Integer.toString(i));
+      sb.append(")");
+      sb.append(arg1);
+      i++;
+    }
+    return sb.toString();
+  }
+  
+  @FXML
+  private void testInterface(ActionEvent event) {
+    String testItem = "Interface and abstract class";
+    ClassTest t1 = new ClassTest();
+    
+    resultTable.addRow(testItem, "abstract class variable", Integer.toString(t1.i));
+    resultTable.addRow(testItem, "interface method", t1.getValue());
+    resultTable.addRow(testItem, "abstract class method", t1.getWeight());
+  }
+  private interface ITest {
+    public String getValue();
+  }
+  private abstract class AbstractTest implements ITest {
+    public int i = 123;
+    
+    @Override
+    public String getValue() {
+      return "value";
+    }
+    
+    public abstract String getWeight();
+  }
+  private class ClassTest extends AbstractTest {
+    @Override
+    public String getWeight() {
+      return "weight";
+    }
+  }
+  
+  @FXML
+  private void testGeneric(ActionEvent event) {
+    String testItem = "Generic";
+    GenericTest<Integer> g = new GenericTest<>();
+    
+    resultTable.addRow(testItem, "generic class and generic function", getGenericTestResult(g, 1, 2));
+  }
+  private <T> String getGenericTestResult(GenericTest<T> g, T t1, T t2) {
+    return Boolean.toString(g.compare(t1, t2));
+  }
+  private class GenericTest<T> {
+    public boolean compare(T t1, T t2) {
+      return (t1==t2);
+    }
+  }
 }
